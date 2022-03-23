@@ -1,0 +1,367 @@
+:root{
+	--incorect-colour:rgb(120, 124, 126);
+	--correct-colour:rgb(106, 170, 100);
+	--position-colour:rgb(201, 180, 88);
+	--button-bg:rgb(211, 214, 218);
+	--bg:rgb(255,255,255);
+	--full-box-border: rgb(134, 138, 140);
+	--empty-box-border: rgb(210, 214, 218);
+
+	--popup-shadow: 0 4px 23px 0 rgba(0,0,0,0.2);
+	--popup-bg:rgb(255,255,255);
+
+	--primary-text:rgb(0,0,0);
+	--secondary-text:rgb(255,255,255);
+
+	--game-text: var(--secondary-text);
+}
+@media (prefers-color-scheme: dark){
+	:root[theme=default]{
+		--incorect-colour:rgb(58, 58, 60);
+		--correct-colour:rgb(83, 141, 78);
+		--position-colour:rgb(181, 159, 59);
+		--button-bg:rgb(129, 131, 132);
+		--bg:rgb(18, 18, 19);
+		--full-box-border: rgb(86, 87, 88);
+		--empty-box-border: rgb(58, 58, 60);
+		
+		--popup-shadow: 0 4px 23px 0 rgba(255, 255, 255, 0.2);
+		--popup-bg:rgb(18, 18, 19);
+		
+		--secondary-text:rgb(0,0,0);
+		--primary-text:rgb(255,255,255);
+		
+		--game-text: var(--primary-text);
+	}
+}
+:root[theme=light]{
+	--incorect-colour:rgb(120, 124, 126);
+	--correct-colour:rgb(106, 170, 100);
+	--position-colour:rgb(201, 180, 88);
+	--button-bg:rgb(211, 214, 218);
+	--bg:rgb(255,255,255);
+	--full-box-border: rgb(134, 138, 140);
+	--empty-box-border: rgb(210, 214, 218);
+
+	--popup-shadow: 0 4px 23px 0 rgba(0,0,0,0.2);
+	--popup-bg:rgb(255,255,255);
+
+	--primary-text:rgb(0,0,0);
+	--secondary-text:rgb(255,255,255);
+
+	--game-text: var(--secondary-text);
+}
+:root[theme=dark]{
+	--incorect-colour:rgb(58, 58, 60);
+	--correct-colour:rgb(83, 141, 78);
+	--position-colour:rgb(181, 159, 59);
+	--button-bg:rgb(129, 131, 132);
+	--bg:rgb(18, 18, 19);
+	--full-box-border: rgb(86, 87, 88);
+	--empty-box-border: rgb(58, 58, 60);
+	
+	--popup-shadow: 0 4px 23px 0 rgba(255, 255, 255, 0.2);
+	--popup-bg:rgb(18, 18, 19);
+	
+	--secondary-text:rgb(0,0,0);
+	--primary-text:rgb(255,255,255);
+	
+	--game-text: var(--primary-text);
+}
+body{
+	height: 100vh;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	position:absolute;
+	background-color: var(--bg);
+}
+.main{
+	display: grid;
+	grid-template-rows: auto min-content;
+	height: 100vh;
+}
+
+.keyboard{
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+.keyboard>div{
+	margin-bottom: 0.2em;
+	display: flex;
+	gap: 0.2em;
+}
+.keyboard_button{
+	font-family: 'Inter', sans-serif;
+	display: block;
+	background-color: var(--colour, var(--button-bg));
+	width: min(2em, calc(( 100vw / 11 ) - 0.2em));
+	color: var(--text-colour, var(--primary-text));
+	height: 3em;
+	font-size: 20px;
+	border: none;
+	border-radius: 10px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.boxes{
+	margin: auto;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: sans-serif;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: auto;
+}
+.basic_box{
+	width: 1.75em;
+	height: 1.75em;
+	font: inherit;
+	border: 2px solid black;
+	margin-right: 0.1em;
+	text-align: center;
+	line-height: 1.75em;
+	text-transform: uppercase;
+	color: var(--primary-text);
+}
+.full_box{
+	border-color: var(--full-box-border);
+	outline: none;
+	animation: 0.1s linear forwards box_bulge;
+}
+@keyframes box_bulge {
+	0%{
+		transform: scale(1.10);
+	}
+	75%{
+		transform: scale(0.90);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
+.boxes>div{
+	margin-top: 0.1em;
+	display: flex;
+}
+.empty_box{
+	border-color: var(--empty-box-border);
+}
+.incorrect_box{
+	--colour: var(--incorect-colour);
+	--text-colour: var(--game-text);
+}
+.position_box{
+	--colour: var(--position-colour);
+	--text-colour: var(--game-text);
+}
+.correct_box{
+	--colour: var(--correct-colour);
+	--text-colour: var(--game-text);
+}
+
+.boxes>div>:nth-child(1).basic_box.correct_box,
+.boxes>div>:nth-child(1).basic_box.incorrect_box,
+.boxes>div>:nth-child(1).basic_box.position_box{
+	animation: 0.3s linear forwards box_spin;
+}
+.boxes>div>:nth-child(2).basic_box.correct_box,
+.boxes>div>:nth-child(2).basic_box.incorrect_box,
+.boxes>div>:nth-child(2).basic_box.position_box{
+	animation: box_spin 0.3s linear forwards 0.3s;
+}
+.boxes>div>:nth-child(3).basic_box.correct_box,
+.boxes>div>:nth-child(3).basic_box.incorrect_box,
+.boxes>div>:nth-child(3).basic_box.position_box{
+	animation: box_spin 0.3s linear forwards 0.6s;
+}
+.boxes>div>:nth-child(4).basic_box.correct_box,
+.boxes>div>:nth-child(4).basic_box.incorrect_box,
+.boxes>div>:nth-child(4).basic_box.position_box{
+	animation: box_spin 0.3s linear forwards 0.9s;
+}
+.boxes>div>:nth-child(5).basic_box.correct_box,
+.boxes>div>:nth-child(5).basic_box.incorrect_box,
+.boxes>div>:nth-child(5).basic_box.position_box{
+	animation: box_spin 0.3s linear forwards 1.2s;
+}
+
+@keyframes box_spin {
+	0%{
+		transform: scaleY(1);
+	}
+	49%{
+		border-color: var(--full-box-border);
+		background-color: var(--bg);
+		color: var(--primary-text);
+	}
+	50%{
+		transform: scaleY(0);
+		border-color: var(--colour);
+		background-color: var(--colour);
+		color: var(--game-text);
+	}
+	100%{
+		transform: scaleY(1);
+		border-color: var(--colour);
+		background-color: var(--colour);
+		color: var(--game-text);
+	}
+}
+
+.boxes>div>:nth-child(1).basic_box.won{
+	animation: 0.3s linear forwards box_spin, box_jump 0.3s linear forwards 1.5s;
+}
+.boxes>div>:nth-child(2).basic_box.won{
+	animation: box_spin 0.3s linear forwards 0.3s, box_jump 0.3s linear forwards 1.6s;
+}
+.boxes>div>:nth-child(3).basic_box.won{
+	animation: box_spin 0.3s linear forwards 0.6s, box_jump 0.3s linear forwards 1.7s;
+}
+.boxes>div>:nth-child(4).basic_box.won{
+	animation: box_spin 0.3s linear forwards 0.9s, box_jump 0.3s linear forwards 1.8s;
+}
+.boxes>div>:nth-child(5).basic_box.won{
+	animation: box_spin 300ms linear forwards 1.2s, box_jump 0.3s linear forwards 1.9s;
+}
+
+@keyframes box_jump {
+	0%{
+		transform: translateY(0);
+	}
+	40%{
+		transform: translateY(-40px);
+	}
+	90%{
+		transform: translateY(10px);
+	}
+	100%{
+		transform: translateY(0);
+	}
+}
+
+.error_list{
+	position: fixed;
+	top: 5%;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	justify-content: center;
+	
+	flex-direction: column;
+}
+.error{
+	display:block;
+	background-color: var(--primary-text);
+	color: var(--secondary-text);
+	border-radius: 5px;
+	padding: 1em;
+	animation: var(--hide_length) linear forwards hide;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: fit-content;
+}
+@keyframes hide{
+	0%{
+		opacity: 1;
+	}
+	50%{
+		opacity: 1;
+	}
+	90%{
+		opacity: 0.05
+	}
+	100%{
+		opacity: 0;
+	}
+}
+
+
+.popup{
+	font-family: sans-serif;
+	/* display: block; */
+	display: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%) translateY(50vh);
+	position: fixed;
+	background-color: var(--popup-bg);
+	border-radius: 10px;
+	box-shadow:  0 0 0 max(100vw,200vh) rgba(255, 255, 255, 0.5), var(--popup-shadow);
+	text-align: center;
+	padding: 1em;
+	color: var(--primary-text);
+}
+.popup-rise{
+	animation: rise 0.5s forwards;
+	display: block;
+}
+@keyframes rise {
+	0%{
+		transform: translate(-50%,-50%) translateY(100vh);
+	}
+	100%{
+		transform: translate(-50%,-50%);
+	}
+}
+
+.popup-sink{
+	animation: sink 0.5s forwards;
+	display: block;
+}
+@keyframes sink {
+	0%{
+		transform: translate(-50%,-50%);
+	}
+	100%{
+		transform: translate(-50%,-50%) translateY(100vh);
+		display: none;
+	}
+}
+.popup button{
+	background-color: var(--button-bg);
+	padding: 1em;
+	border: none;
+	border-radius: 5px;
+}
+.header{
+	position: absolute;
+	top: 0;
+	width: 100vw;
+	display: flex;
+}
+.menu_button{
+	position: relative;
+	border: none;
+	padding: 0.5em;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	display: block;
+	margin-right: 0;
+	margin-left: 0.2em;
+}
+.menu_button:first-of-type{
+	margin-left: auto;
+}
+.menu_button:last-of-type{
+	border-bottom-right-radius: 0;
+}
+.title{
+	position: relative;
+	margin: 0;
+	margin-left: 50vw;
+	width: max-content;
+	transform: translateX(-50%);
+	display: block;
+}
