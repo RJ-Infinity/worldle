@@ -8,17 +8,18 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function getNewWord(){
-				fetch("words.json")
+				fetch("countries.json")
 				.then(response => response.json())
 				.then(json => window.Word = json[Math.floor(Math.random() * json.length)]);
 			}
 			getNewWord();
 		</script>
 		<script src="script.js" defer></script>
+		<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<header class="header">
-			<h1 class="title">Wordle</h1>
+			<h1 class="title">WOR<span style="color:green;">L</span>DLE</h1>
 			<button onclick="reopenScreen()" class="menu_button">
 				<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
 					<path d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
@@ -31,88 +32,59 @@
 			</button>
 		</header>
 		<div class="main">
-			<div class="boxes">
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
+			<div class="country"></div>
+			<div class="guesses">
+				<div class="guess">
+					<div class="box" context="loading bar">
+						<span>🟩</span>
+						<span>🟩</span>
+						<span>🟨</span>
+						<span>⬜</span>
+						<span>⬜</span>
+					</div>
+					<div class="box" context="guessed country">ANGOLA</div>
+					<div class="box" context="distance">9833km</div>
+					<div class="box" context="direction">⬅️</div>
+					<div class="box" context="proximity">50%</div>
 				</div>
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
+				<div class="guess box greyed-out">
+					<div class="box" context="loading bar"></div>
+					<div class="box" context="guessed country"></div>
+					<div class="box" context="distance"></div>
+					<div class="box" context="direction"></div>
+					<div class="box" context="proximity"></div>
 				</div>
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
+				<div class="guess box greyed-out">
+					<div class="box" context="loading bar"></div>
+					<div class="box" context="guessed country"></div>
+					<div class="box" context="distance"></div>
+					<div class="box" context="direction"></div>
+					<div class="box" context="proximity"></div>
 				</div>
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
+				<div class="guess box greyed-out">
+					<div class="box" context="loading bar"></div>
+					<div class="box" context="guessed country"></div>
+					<div class="box" context="distance"></div>
+					<div class="box" context="direction"></div>
+					<div class="box" context="proximity"></div>
 				</div>
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
+				<div class="guess box greyed-out">
+					<div class="box" context="loading bar"></div>
+					<div class="box" context="guessed country"></div>
+					<div class="box" context="distance"></div>
+					<div class="box" context="direction"></div>
+					<div class="box" context="proximity"></div>
 				</div>
-				<div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-					<div class="basic_box empty_box"></div>
-				</div>
-			</div>
-			<div class="keyboard">
-				<div>
-					<button class="keyboard_button" id="KeyQ" onclick="buttonKeyPress(this)">Q</button>
-					<button class="keyboard_button" id="KeyW" onclick="buttonKeyPress(this)">W</button>
-					<button class="keyboard_button" id="KeyE" onclick="buttonKeyPress(this)">E</button>
-					<button class="keyboard_button" id="KeyR" onclick="buttonKeyPress(this)">R</button>
-					<button class="keyboard_button" id="KeyT" onclick="buttonKeyPress(this)">T</button>
-					<button class="keyboard_button" id="KeyY" onclick="buttonKeyPress(this)">Y</button>
-					<button class="keyboard_button" id="KeyU" onclick="buttonKeyPress(this)">U</button>
-					<button class="keyboard_button" id="KeyI" onclick="buttonKeyPress(this)">I</button>
-					<button class="keyboard_button" id="KeyO" onclick="buttonKeyPress(this)">O</button>
-					<button class="keyboard_button" id="KeyP" onclick="buttonKeyPress(this)">P</button>
-					<button class="keyboard_button" onclick="buttonKeyPress(this)">⌫</button>
-				</div>
-
-				<div>
-					<button class="keyboard_button" id="KeyA" onclick="buttonKeyPress(this)">A</button>
-					<button class="keyboard_button" id="KeyS" onclick="buttonKeyPress(this)">S</button>
-					<button class="keyboard_button" id="KeyD" onclick="buttonKeyPress(this)">D</button>
-					<button class="keyboard_button" id="KeyF" onclick="buttonKeyPress(this)">F</button>
-					<button class="keyboard_button" id="KeyG" onclick="buttonKeyPress(this)">G</button>
-					<button class="keyboard_button" id="KeyH" onclick="buttonKeyPress(this)">H</button>
-					<button class="keyboard_button" id="KeyJ" onclick="buttonKeyPress(this)">J</button>
-					<button class="keyboard_button" id="KeyK" onclick="buttonKeyPress(this)">K</button>
-					<button class="keyboard_button" id="KeyL" onclick="buttonKeyPress(this)">L</button>
-					<button class="keyboard_button" onclick="buttonKeyPress(this)"><b>⏎</b></button>
-				</div>
-
-				<div>
-					<button class="keyboard_button" id="KeyZ" onclick="buttonKeyPress(this)">Z</button>
-					<button class="keyboard_button" id="KeyX" onclick="buttonKeyPress(this)">X</button>
-					<button class="keyboard_button" id="KeyC" onclick="buttonKeyPress(this)">C</button>
-					<button class="keyboard_button" id="KeyV" onclick="buttonKeyPress(this)">V</button>
-					<button class="keyboard_button" id="KeyB" onclick="buttonKeyPress(this)">B</button>
-					<button class="keyboard_button" id="KeyN" onclick="buttonKeyPress(this)">N</button>
-					<button class="keyboard_button" id="KeyM" onclick="buttonKeyPress(this)">M</button>
+				<div class="guess box greyed-out">
+					<div class="box" context="loading bar"></div>
+					<div class="box" context="guessed country"></div>
+					<div class="box" context="distance"></div>
+					<div class="box" context="direction"></div>
+					<div class="box" context="proximity"></div>
 				</div>
 			</div>
+			<input type="text" class="box"/>
+			<button class="box">🌍Guess</button>
 		</div>
 		<div id="errorList" class="error_list"></div>
 		<div class="popup" id="WinScreen">
@@ -129,5 +101,6 @@
 				<option value="dark">Dark</option>
 			</select>
 		</div>
+		<script betterEmojis>twemoji.ext=".svg";twemoji.size="svg";twemoji.parse(document.body);</script>
 	</body>
 </html>
