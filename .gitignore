@@ -1,1 +1,3 @@
 server.cmd
+node_modules
+webpage/*.js

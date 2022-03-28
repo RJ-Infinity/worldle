@@ -1,0 +1,22 @@
+{
+  "name": "worldle",
+  "version": "1.0.0",
+  "description": "a worldle clone",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RJ-Infinity/worldle.git"
+  },
+  "author": "RJ_Infinity",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RJ-Infinity/worldle/issues"
+  },
+  "homepage": "https://github.com/RJ-Infinity/worldle#readme",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
