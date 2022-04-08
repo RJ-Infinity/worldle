@@ -2,10 +2,11 @@
 	"compilerOptions": {
 		"module": "commonjs",
 		"noImplicitAny": true,
-		"removeComments": true,
+		"removeComments": false,
 		"preserveConstEnums": true,
-		"target": "es5"
-		// "sourceMap": true
+		"sourceMap": true,
+		"noImplicitThis": true,
+		"target": "es6"
 	},
 	"files": [
 		"webpage\\latlon.ts",

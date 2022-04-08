@@ -4,7 +4,7 @@
   "description": "a worldle clone",
   "main": "",
   "scripts": {
-    "startWatch": "tsc --watch"
+    "startWatch": "tsc --watch --target ES5"
   },
   "repository": {
     "type": "git",
